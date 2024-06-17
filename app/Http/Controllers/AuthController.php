@@ -61,6 +61,6 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         // Mengarahkan pengguna kembali ke halaman login setelah logout
-        return redirect('login');
+        return redirect('login')->with("success", "Logout succesful!");
     }
 }

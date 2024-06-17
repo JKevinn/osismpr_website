@@ -21,7 +21,7 @@ class DashboardController extends Controller
             $users = User::count();
         
             // Mengirimkan data ke view dashboard
-            return view("dashboard", compact("upcomingMeeting", "completedMeeting", "users"))->with("success", "Get dashboard data successfully!");
+            return view("dashboard", compact("upcomingMeeting", "completedMeeting", "users"))->with("success", "Get dashboard data succesful!");
         } catch (Exception $error) {
             // Mencatat error ke log
             Log::error('Error fetching dashboard data: ' . $error->getMessage());

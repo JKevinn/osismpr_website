@@ -43,7 +43,7 @@ class AttendanceController extends Controller
             $meetings = $query->paginate(5);
     
             // Mengirimkan variabel 'meetings' ke view attendance.index
-            return view("attendance.index", compact("meetings"))->with('success', "Get meeting data successfully!");
+            return view("attendance.index", compact("meetings"))->with('success', "Get meeting data succesful!");
         } catch (Exception $error) {
             // Log error
             Log::error('Error fetching meeting data: ' . $error->getMessage());
@@ -65,7 +65,7 @@ class AttendanceController extends Controller
             
             if ($attendance) {
                 return view("attendance.scan", compact("meeting_uuid", "attendance"))
-                    ->with("success", "Get data attendance successfully!");
+                    ->with("success", "Get data attendance succesful!");
             } else {
                 return view("attendance.scan")->with("failed", "Get data attendance failed!");
             }
@@ -157,7 +157,7 @@ class AttendanceController extends Controller
     
             // Mengirim data kehadiran ke view
             return view('attendance.listAttendance', compact('meeting_uuid', 'attendance'))
-                ->with('success', 'Get data attendance successfully!');
+                ->with('success', 'Get data attendance succesful!');
         } catch (Exception $error) {
             // Tangkap kesalahan jika terjadi
             Log::error('Error fetching attendance: ' . $error->getMessage());

@@ -32,7 +32,7 @@ class ScheduleController extends Controller
             $schedule = $query->paginate(5);
         
             // Mengirim variabel 'schedule' ke view dengan pesan sukses
-            return view("schedule.index", compact('schedule'))->with('success', "Get data schedule successfully!");
+            return view("schedule.index", compact('schedule'))->with('success', "Get data schedule succesful!");
         } catch (Exception $error) {
             // Mencatat error ke log
             Log::error('Error fetching schedule: ' . $error->getMessage());
@@ -68,7 +68,7 @@ class ScheduleController extends Controller
 
             // Mengembalikan respons atau redirect sesuai kebutuhan
             if ($store) {
-                return redirect()->back()->with("success", "Create meeting successfully!");
+                return redirect()->back()->with("success", "Create meeting succesful!");
             } else {
                 return redirect()->back()->with("failed", "Create meeting failed!");
             }
@@ -108,7 +108,7 @@ class ScheduleController extends Controller
         
             // Mengembalikan respons atau redirect sesuai kebutuhan
             if ($meeting->wasChanged()) {
-                return redirect()->back()->with("success", "Edit meeting successfully!");
+                return redirect()->back()->with("success", "Edit meeting succesful!");
             } else {
                 return redirect()->back()->with("failed", "No changes made or edit meeting failed.");
             }
@@ -131,7 +131,7 @@ class ScheduleController extends Controller
         
             // Mengembalikan respons atau redirect sesuai kebutuhan
             if ($meeting->trashed()) {
-                return redirect()->back()->with("success", "Delete meeting successfully!");
+                return redirect()->back()->with("success", "Delete meeting succesful!");
             } else {
                 return redirect()->back()->with("failed", "Delete meeting failed!");
             }
