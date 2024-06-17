@@ -94,7 +94,7 @@ Swal.fire({
                      <img src="https://yt3.googleusercontent.com/hfDCx841L_VCRZOq2QhU4Z1OifMWlei8vJUyRmyD0tBrcYq9vF3Vx5RxjCSMYtYIpDFCpn7_Ow=s900-c-k-c0x00ffffff-no-rj" class="rounded-full w-10 h-10 hidden md:block" alt="">
                      <h2 class="hidden md:block ms-5 text-xl font-semibold tracking-wider">OSIS MPR SMK Wikrama Bogor</h2>
                   </div>
-                <div class="flex items-center lg:order-2">
+                {{-- <div class="flex items-center lg:order-2">
                     <button type="button" class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                         <span class="sr-only">Open user menu</span>
                         <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
@@ -142,7 +142,7 @@ Swal.fire({
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </nav>
       </header>

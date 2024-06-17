@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use App\Models\MeetingSchedule;
 use Exception;
 use Illuminate\Http\Request;
@@ -123,11 +124,12 @@ class ScheduleController extends Controller
 
     public function delete($uuid) {
         try {
-            // Mengambil meeting berdasarkan UUID
+            // Mengambil meeting dan attendance berdasarkan UUID
             $meeting = MeetingSchedule::where('uuid', $uuid)->firstOrFail();
             
-            // Menghapus meeting dengan soft delete
+            // Menghapus meeting dan attendance dengan soft delete
             $meeting->delete();
+            Attendance::where('meeting_uuid', $uuid)->delete();
         
             // Mengembalikan respons atau redirect sesuai kebutuhan
             if ($meeting->trashed()) {
