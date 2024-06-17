@@ -2,36 +2,6 @@
 
 @section('content')
 <div>
-    @if (Session::has("success"))
-        <script>
-        Swal.fire({
-            icon: "success",
-            title: `{{ Session::get("success")}}` ,
-            showConfirmButton: false,
-            timer: 1500
-        });
-        </script>
-    @endif
-    @if (Session::has("failed"))
-        <script>
-        Swal.fire({
-            icon: "error",
-            title: `{{ Session::get("failed")}}` ,
-            showConfirmButton: false,
-            timer: 1500
-        });
-        </script>
-    @endif
-    @if (Session::has("error"))
-        <script>
-        Swal.fire({
-            icon: "error",
-            title: `{{ Session::get("error")}}` ,
-            showConfirmButton: false,
-            timer: 1500
-        });
-        </script>
-    @endif
     <h3 class="text-base font-semibold leading-6 text-gray-900">Scan QR Code</h3>
     <div class="flex justify-between items-start space-x-3 mt-5">
         <a href="{{ route('attendance.index') }}" class="bg-white text-gray-700 px-4 text-sm font-semibold py-3 rounded-md border border-gray-300 hover:bg-gray-100">
@@ -39,7 +9,7 @@
         </a>
     </div>
     <div class="flex flex-wrap justify-center xl:justify-between">
-        <div class="mt-5 relative shadow-md sm:rounded-lg max-w-[300px]">
+        <div class="mt-5 relative shadow-md sm:rounded-lg max-w-[300px] max-h-fit">
             <video id="preview" class="p-2"></video>
             <form action="{{ route('attendance.scan', $meeting_uuid) }}" method="POST" id="form">
                 @csrf
@@ -119,5 +89,6 @@
         document.getElementById('uuid').value = c;
         document.getElementById('form').submit();
     })
+
 </script>
 @endsection

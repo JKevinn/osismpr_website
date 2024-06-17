@@ -6,10 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OSIS-MPR | Login</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <!-- component -->
 <div class="flex h-screen">
+  @if (Session::has("success"))
+        <script>
+        Swal.fire({
+            icon: "success",
+            title: `{{ Session::get("success")}}` ,
+            showConfirmButton: false,
+            timer: 1500
+        });
+        </script>
+    @endif
+    @if (Session::has("failed"))
+        <script>
+        Swal.fire({
+            icon: "error",
+            title: `{{ Session::get("failed")}}` ,
+            showConfirmButton: false,
+            timer: 1500
+        });
+        </script>
+    @endif
+    @if (Session::has("error"))
+        <script>
+        Swal.fire({
+            icon: "error",
+            title: `{{ Session::get("error")}}` ,
+            showConfirmButton: false,
+            timer: 1500
+        });
+        </script>
+    @endif
     <!-- Left Pane -->
     <div class="hidden lg:flex items-center justify-center flex-1 bg-white text-black">
       <div class="max-w-md text-center">
@@ -88,8 +119,8 @@
       <div class="max-w-md w-full p-6">
         <h1 class="text-3xl font-semibold mb-6 text-black text-center">Login</h1>
         <h1 class="text-sm font-semibold mb-6 text-gray-500 text-center">Website to ...</h1>
-        <form action="" method="POST" class="space-y-4">
-          <!-- Your form elements go here -->
+        <form action="{{ route('authLogin')}}" method="POST" class="space-y-4">
+          @csrf
           <div>
             <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
             <input type="text" id="username" name="username" placeholder="Username" class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">

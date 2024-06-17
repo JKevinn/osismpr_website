@@ -39,11 +39,11 @@
                 </tr>
             </thead>
             <tbody>
-            @if (!$meeting->isEmpty())
+            @if (!$meetings->isEmpty())
                 @php
                     $previousDate = null;
                 @endphp
-                @foreach ($meeting as $item)
+                @foreach ($meetings as $item)
                 @if ($item->date != $previousDate)
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" colspan="5"><span class="font-medium text-red-500 border-2 border-red-500 p-1 rounded-lg">{{ $item->date }}</span></th>
@@ -80,9 +80,9 @@
                 @endif
             </tbody>
         </table>
-        @if (!$meeting->isEmpty())
+        @if (!$meetings->isEmpty())
             <div class="p-5">
-                {{ $meeting->links() }}
+                {{ $meetings->links() }}
             </div>
         @endif
     </div>

@@ -5,10 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Attendance extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -28,21 +26,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'uuid',
-        'name',
-        'nis',
-        'rayon',
-        'position',
-        'username',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
+        'meeting_uuid',
+        'user_uuid',
+        'arrival_time',
+        'status',
     ];
 
     /**
@@ -52,7 +39,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'uuid' => 'string',
-        'nis' => 'integer',
+        'meeting_uuid' => 'string',
+        'user_uuid' => 'string',
+        'arrival_time' => 'time',
+        'status' => 'string',
     ];
 
     /**
@@ -62,8 +52,13 @@ class User extends Authenticatable
      */
     protected $dates = ['deleted_at'];
 
-    public function attendances()
+    public function meeting()
     {
-        return $this->hasMany(Attendance::class, 'user_uuid', 'uuid');
+        return $this->belongsTo(MeetingSchedule::class, 'meeting_uuid', 'uuid');
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_uuid', 'uuid');
     }
 }
