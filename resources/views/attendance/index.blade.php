@@ -63,7 +63,7 @@
                         {{ $item->location }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $item->attendance_count }}
+                        {{ $item->attendances_count }}
                     </td>
                     <td class="px-6 py-4 lg:space-x-3">
                         <a href="{{ route('attendance.listAttendance', $item->uuid)}}" class="font-medium text-green-600 dark:text-green-500 hover:underline">View Detail</a>

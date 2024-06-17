@@ -41,7 +41,6 @@ class Attendance extends Model
         'uuid' => 'string',
         'meeting_uuid' => 'string',
         'user_uuid' => 'string',
-        'arrival_time' => 'time',
         'status' => 'string',
     ];
 
@@ -52,7 +51,7 @@ class Attendance extends Model
      */
     protected $dates = ['deleted_at'];
 
-    public function meeting()
+    public function meetingSchedule()
     {
         return $this->belongsTo(MeetingSchedule::class, 'meeting_uuid', 'uuid');
     }

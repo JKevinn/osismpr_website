@@ -8,7 +8,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -56,11 +55,9 @@ class AttendanceController extends Controller
     public function scanner($meeting_uuid) {
         try {
             // Mengambil data attendance menggunakan Eloquent
-            $attendance = Attendance::where("meeting_uuid", $meeting_uuid)
-                ->join("users", "attendance.user_uuid", "=", "users.uuid")
-                ->join("meeting_schedule", "attendance.meeting_uuid", "=", "meeting_schedule.uuid")
-                ->select("attendance.uuid", "users.name", "attendance.arrival_time", "attendance.status")
-                ->orderBy("attendance.arrival_time", 'desc')
+            $attendance = Attendance::where('meeting_uuid', $meeting_uuid)
+                ->with(['user', 'meetingSchedule']) // Memuat relasi user dan meetingSchedule
+                ->orderBy('arrival_time', 'desc')
                 ->get();
             
             if ($attendance) {
@@ -149,10 +146,8 @@ class AttendanceController extends Controller
         try {
             // Mengambil data kehadiran dengan menggunakan Eloquent
             $attendance = Attendance::where('meeting_uuid', $meeting_uuid)
-                ->join('users', 'attendance.user_uuid', '=', 'users.uuid')
-                ->join('meeting_schedule', 'attendance.meeting_uuid', '=', 'meeting_schedule.uuid')
-                ->select('attendance.uuid', 'users.name', 'attendance.arrival_time', 'attendance.status')
-                ->orderBy('attendance.arrival_time')
+                ->with(['user', 'meetingSchedule']) // Memuat relasi user dan meetingSchedule
+                ->orderBy('arrival_time')
                 ->paginate(5);
     
             // Mengirim data kehadiran ke view
