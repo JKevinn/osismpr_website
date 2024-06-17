@@ -118,7 +118,7 @@ class ScheduleController extends Controller
         
             // Mengembalikan redirect dengan pesan error
             return redirect()->back()->with('error', "Failed to edit meeting. Please try again later.");
-        }        
+        }
     }
 
     public function delete($uuid) {

@@ -10,6 +10,8 @@ class MeetingSchedule extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'uuid';
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -34,9 +36,6 @@ class MeetingSchedule extends Model
      */
     protected $casts = [
         'uuid' => 'string',
-        'time_start' => 'datetime:H:i:s',
-        'time_end' => 'datetime:H:i:s',
-        'date' => 'date',
         'status' => 'string',
     ];
 
