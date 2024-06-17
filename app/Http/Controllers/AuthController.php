@@ -47,6 +47,20 @@ class AuthController extends Controller
             Log::error('Error during login: ' . $error->getMessage());
         
             return redirect()->back()->with('error', 'Login failed. Please try again later.');
-        }        
+        }
+    }
+
+    public function logout(Request $request) {
+        // Memanggil fungsi logout dari Auth
+        Auth::logout();
+
+        // Memutuskan semua sesi
+        $request->session()->invalidate();
+
+        // Menghasilkan token baru untuk sesi yang baru
+        $request->session()->regenerateToken();
+
+        // Mengarahkan pengguna kembali ke halaman login setelah logout
+        return redirect('login');
     }
 }

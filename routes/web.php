@@ -23,6 +23,7 @@ Route::get('/login', function() {
 })->name('login');
 
 Route::post('/authLogin', [AuthController::class, "login"])->name('authLogin');
+Route::post('/logout', [AuthController::class, "logout"])->name("logout");
 
 Route::middleware("UserAuthCheck")->group(function() {
 
