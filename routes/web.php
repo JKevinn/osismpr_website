@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function() {
+Route::get('/', function() {
     return view('index');
 })->name('login');
 
@@ -27,7 +27,7 @@ Route::post('/logout', [AuthController::class, "logout"])->name("logout");
 
 Route::middleware("UserAuthCheck")->group(function() {
 
-    Route::get('/', [DashboardController::class, "index"])->name("dashboard");
+    Route::get('/dashboard', [DashboardController::class, "index"])->name("dashboard");
     
     Route::prefix("user")->name("user.")->group(function() {
         Route::get('/', [UserController::class, "index"])->name("index");

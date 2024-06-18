@@ -30,7 +30,7 @@ class AuthController extends Controller
                     Auth::login($user);
         
                     // Redirect ke halaman dashboard setelah login
-                    return redirect()->intended('')->with('success', 'Login successful!');
+                    return redirect()->intended('dashboard')->with('success', 'Login successful!');
                 } else {
                     // Password tidak cocok
                     return redirect()->back()->with('failed', 'Login failed, please try again!');
@@ -61,6 +61,6 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         // Mengarahkan pengguna kembali ke halaman login setelah logout
-        return redirect('login')->with("success", "Logout succesful!");
+        return redirect('')->with("success", "Logout succesful!");
     }
 }

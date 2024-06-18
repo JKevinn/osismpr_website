@@ -6,6 +6,7 @@ use App\Models\Attendance;
 use App\Models\MeetingSchedule;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 
@@ -64,7 +65,7 @@ class ScheduleController extends Controller
                 "time_start" => $request->time_start,
                 "time_end" => $request->time_end,
                 "description" => $request->description,
-                "created_by" => "Kevin"  // Ini bisa disesuaikan sesuai kebutuhan, misalnya menggunakan data pengguna yang sedang login
+                "created_by" => Auth::user()->name  // Ini bisa disesuaikan sesuai kebutuhan, misalnya menggunakan data pengguna yang sedang login
             ]);
 
             // Mengembalikan respons atau redirect sesuai kebutuhan
