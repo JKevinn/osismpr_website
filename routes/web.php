@@ -33,6 +33,7 @@ Route::middleware("UserAuthCheck")->group(function() {
         Route::get('/', [UserController::class, "index"])->name("index");
         Route::post('/store', [UserController::class, "store"])->name("store");
         Route::put('/update/{uuid}', [UserController::class, "update"])->name("update");
+        Route::put('/editProfile/{uuid}', [UserController::class, "editProfile"])->name("editProfile");
         Route::delete('/delete/{uuid}', [UserController::class, "delete"])->name("delete");
     });
     

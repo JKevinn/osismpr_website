@@ -134,7 +134,42 @@ class UserController extends Controller
         
             // Mengembalikan redirect dengan pesan error
             return redirect()->back()->with('error', "Failed to update data user. Please try again later.");
-        }        
+        }
+    }
+
+    public function editProfile(Request $request, $uuid) {
+        try {
+            // Memvalidasi data yang akan diupdate
+            $validatedData = $request->validate([
+                'name' => 'required|string',
+                'nis' => 'required|integer',
+                'rayon' => 'required|string',
+                'password' => 'string'
+            ]);
+        
+            // Melakukan update data pengguna berdasarkan UUID
+            $user = User::where('uuid', $uuid)->firstOrFail();
+            $user->name = $validatedData['name'];
+            $user->nis = $validatedData['nis'];
+            $user->rayon = $validatedData['rayon'];
+            if($request->password) {
+                $user->password = Hash::make($validatedData['password']);
+            }
+            $user->save();
+        
+            // Mengembalikan respons atau redirect sesuai kebutuhan
+            if ($user->wasChanged()) {
+                return redirect()->back()->with("success", "Edit profile successful!");
+            } else {
+                return redirect()->back()->with("failed", "No changes made or edit profile failed.");
+            }
+        } catch (Exception $error) {
+            // Mencatat error ke log
+            Log::error('Error updating user: ' . $error->getMessage());
+        
+            // Mengembalikan redirect dengan pesan error
+            return redirect()->back()->with('error', "Failed to update data user. Please try again later.");
+        }
     }
     
     public function delete($uuid) {
